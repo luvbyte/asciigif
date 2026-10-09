@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ASCII GIF Studio</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <main class="app">
+      <header>
+        <h1>ASCII GIF Studio</h1>
+        <p>Turn any video into animated ASCII art.</p>
+      </header>
+
+      <section class="panel">
+        <label class="dropzone" id="dropzone" for="videoInput">
+          <div>
+            <strong id="fileTitle">Drop a video here</strong>
+            <span class="muted">or tap to choose a video</span>
+            <div class="muted" style="margin-top: 8px">
+              MP4, WebM, MOV and other browser-supported formats
+            </div>
+          </div>
+        </label>
+
+        <input id="videoInput" type="file" accept="video/*" />
+
+        <video id="video" class="hidden" muted playsinline></video>
+
+        <div class="controls">
+          <div class="field">
+            <label for="asciiSet">Custom ASCII characters (optional)</label>
+            <input
+              id="asciiSet"
+              type="text"
+              placeholder="Leave empty for default characters"
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <p class="muted">
+              Characters map from dark to bright. Example: @%#*+=-:.
+            </p>
+          </div>
+
+          <div class="field">
+            <label>Maximum duration</label>
+            <select id="duration">
+              <option value="3">3 seconds</option>
+              <option value="5" selected>5 seconds</option>
+              <option value="10">10 seconds</option>
+              <option value="15">15 seconds</option>
+              <option value="30">30 seconds</option>
+              <option value="0">Entire video</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>
+              ASCII width
+              <span id="widthValue">100</span>
+            </label>
+            <input id="width" type="range" min="30" max="180" value="100" />
+          </div>
+
+          <div class="field">
+            <label>
+              Font size
+              <span id="fontValue">8</span>
+            </label>
+            <input id="fontSize" type="range" min="5" max="16" value="8" />
+          </div>
+
+          <div class="field">
+            <label>
+              Output FPS
+              <span id="fpsValue">8</span>
+            </label>
+            <input id="fps" type="range" min="2" max="20" value="8" />
+          </div>
+        </div>
+
+        <div class="buttons">
+          <label class="check">
+            <input id="colored" type="checkbox" />
+            Colored ASCII
+          </label>
+
+          <label class="check">
+            <input id="invert" type="checkbox" />
+            Invert brightness
+          </label>
+        </div>
+
+        <div class="buttons">
+          <button id="convert" disabled>Generate GIF</button>
+          <button id="cancel" class="secondary hidden">Cancel</button>
+        </div>
+
+        <progress id="progress" class="hidden" max="100" value="0"></progress>
+        <div id="status" class="status">Choose a video to get started.</div>
+      </section>
+
+      <section class="panel">
+        <h3>Generated GIF</h3>
+        <div class="preview" id="gifPreview">
+          <span class="muted">Your GIF will appear here.</span>
+        </div>
+
+        <div class="buttons">
+          <a id="download" class="hidden" download="ascii.gif">
+            <button type="button">Download GIF</button>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
